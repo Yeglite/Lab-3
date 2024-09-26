@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <script src="randominteger.js"></script>
+</head>
+<body>
+    <script>
+        function startGame() {
+            const randomNumber = randomInt();
+            let attempts = 10;
+            let guesses = [];
+
+            while (attempts > 0) {
+                let guess = prompt("Guess a number between 1 and 100. You have " + attempts + " attempts left:");
+                guesses.push(guess);
+                
+                if (guess == randomNumber) {
+                    alert("Congratulations! You've guessed the right number: " + randomNumber);
+                    break;
+                } else if (guess < randomNumber) {
+                    alert("Too low! Previous guesses: " + guesses.join(", "));
+                } else {
+                    alert("Too high! Previous guesses: " + guesses.join(", "));
+                }
+                
+                attempts--;
+
+                if (attempts === 0) {
+                    alert("Game over! The number was: " + randomNumber);
+                }
+            }
+
+            if (confirm("Do you want to play again?")) {
+                startGame();
+            }
+        }
+
+        startGame();
+    </script>
+</body>
+</html>
